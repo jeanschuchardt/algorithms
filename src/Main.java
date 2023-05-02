@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,7 +18,14 @@ public class Main {
 //        int[] t = {1,2,3,4};
 //        int[] ints = missingRolls(t, 4, 6);
 //        System.out.println(ints);
-        FizzBuzz.fizzBuzz(15);
+//        FizzBuzz.fizzBuzz(15);
+    String text = "Words are a sword in our era.";
+        List<String> result = Anagrams.getAnagrams(text);
+    
+        for (String s : result) {
+            System.out.println(s);
+            
+        }
     }
     
     public static int[] missingRolls(int[] A, int F, int M) {
