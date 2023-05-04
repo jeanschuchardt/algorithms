@@ -8,7 +8,8 @@ public class Anagrams {
     public static List<String> getAnagrams(String text) {
         List<String> result = new ArrayList<>();
         text = text.replace(".", "");
-        text = text.toLowerCase();
+        text = text.replaceAll("[^a-zA-Z ]", "");
+        
         String[] split = text.split(" ");
         HashMap<Integer, Object> words = new HashMap<>();
         
@@ -45,24 +46,22 @@ public class Anagrams {
         return result.stream().sorted().collect(Collectors.toList());
     }
     
-    public static boolean isAnagram(String s, String t) {
-        if (s.length() != t.length()) {
+    public static boolean isAnagram(String s1, String s2) {
+        s1 = s1.toLowerCase();
+        s2 = s2.toLowerCase();
+        // In order for two String to be anagrams, they must have the same length.
+        if(s1.length() != s2.length()) {
             return false;
         }
-        
-        int[] freq = new int[26];
-        for (int i = 0; i < s.length(); i++) {
-            freq[s.charAt(i) - 'a']++;
-            freq[t.charAt(i) - 'a']--;
-        }
-        
-        for (int i = 0; i < freq.length; i++) {
-            if (freq[i] != 0) {
+        // If s2 does not contain even one of s1's chars return false.
+        for(int i = 0; i < s1.length(); i++) {
+            if(!s2.contains("" + s1.charAt(i))) {
                 return false;
             }
         }
-        
         return true;
+        
+        
     }
     
     
